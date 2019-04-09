@@ -1,5 +1,7 @@
 {
   "name": "datalog-viewer",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
