@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.iotize.datalog-viewer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.iotize.datalogviewer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Datalog Viewer</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="dev@iotize.com" href="http://www.iotize.com/">IoTize Solutions</author>
@@ -85,4 +85,5 @@
     <plugin name="cordova-plugin-iotize-ble" spec="@iotize/cordova-plugin-iotize-ble@~1.1.0-alpha.21" />
     <plugin name="cordova-plugin-add-swift-support" spec="^2.0.2" />
     <engine name="ios" spec="5.0.0" />
+    <engine name="android" spec="7.0.0" />
 </widget>

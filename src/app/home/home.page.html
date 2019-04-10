@@ -1,14 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-button color="dark" (click)="toggleScan()" expand="full">{{ble.isScanning? 'Stop' : 'Start'}} Scan</ion-button>
+  <ion-list>
+    <ng-container *ngFor="let device of devices">
+      <ng-container [ngTemplateOutlet]="device.address != ble.selectedDevice? connectBlock : disconnectBlock" [ngTemplateOutletContext]="{device: device}"></ng-container>
+    </ng-container>
+  </ion-list>
+Datalog count: {{deviceService.datalogCount}}
+<div *ngFor="let packet of deviceService.parsedDataLogPackets">
+  <div>BundleId: {{packet.bundleId}}</div>
+  <div>LogTime: {{packet.logTime}}</div>
+
+  Variables:
+  <table *ngFor="let variable of packet.variables">
+    <tr>
+      <td>
+        Name:
+      </td>
+      <td>
+        {{variable.name}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Buffer:
+      </td>
+      <td>
+        {{variable.data}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Value:
+      </td>
+      <td>
+        {{variable.value}}
+      </td>
+    </tr>
+  </table>
+</div>
 </ion-content>
+
+<ng-template #connectBlock let-device='device'>
+  <ion-item [class.hidden]="ble.selectedDevice != ''" button color="light" (click)="connect(device);" >
+    {{device.name}} 
+  </ion-item>
+</ng-template>
+<ng-template #disconnectBlock let-device='device'>
+  <ion-item button color="primary" (click)="disconnect();" detail="true" detailIcon="checkmark-circle">
+    {{device.name}}
+  </ion-item>
+</ng-template>
